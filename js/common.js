@@ -201,7 +201,7 @@
 
   // ---------- Общий движок викторины (режим «Выбери определение») ----------
   // opts: { container, title, questions, restart }
-  // question: { prompt, promptClass, options: [{ text, review, correct }] }
+  // question: { prompt, promptClass, options: [{ text, review, correct }], media?: () => Node, mountOptions?: (optBox, nextBtn) => boolean, onAnswer?: (option, correct) => void }
   App.runQuiz = function (opts) {
     var c = opts.container, el = App.el;
     var questions = opts.questions, total = questions.length;
@@ -239,6 +239,7 @@
                        (q.options.filter(function (x) { return x.correct; })[0]).text
             });
           }
+          if (q.onAnswer) q.onAnswer(o, !!o.correct);
           nextBtn.hidden = false;
           try { nextBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) {}
         });
@@ -246,6 +247,9 @@
         return b;
       });
 
+      var mediaNode = q.media ? q.media() : null;
+      // q.mountOptions(optBox, nextBtn) → true, если режим сам разместил варианты и кнопку (тогда нижняя панель не нужна)
+      var custom = q.mountOptions ? !!q.mountOptions(optBox, nextBtn) : false;
       c.appendChild(el('div', { class: 'card quiz-card' }, [
         el('div', { class: 'progress-line' }, [
           el('span', { text: 'Вопрос ' + (idx + 1) + ' из ' + total }),
@@ -255,9 +259,10 @@
           el('div', { class: 'progress-fill', style: 'width:' + Math.round(idx / total * 100) + '%' })
         ]),
         el('div', { class: 'prompt ' + (q.promptClass || ''), text: q.prompt }),
-        optBox
+        mediaNode,
+        custom ? null : optBox
       ]));
-      c.appendChild(App.bar([nextBtn]));
+      if (!custom) c.appendChild(App.bar([nextBtn]));
     }
 
     function showResult() {

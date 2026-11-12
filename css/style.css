@@ -440,7 +440,6 @@ html.cookie-blocked body { overflow: hidden; }
 }
 
 /* ---------- Режим «Найди на карте» ---------- */
-.menu-card-wide { grid-column: 1 / -1; }
 .map-target { color: var(--accent); font-weight: 700; }
 .map-chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0; }
 .map-chip {
@@ -483,4 +482,30 @@ html.cookie-blocked body { overflow: hidden; }
 @media (max-width: 380px) {
   .map-chips { gap: 4px; }
   .map-chip { min-height: 30px; padding: 4px 7px; font-size: .8rem; }
+}
+.map-view + .options { margin-top: 14px; }
+/* «Что на карте?» на широком экране: варианты и «Далее» поверх карты */
+@media (min-width: 601px) {
+  .map-view.map-fit .map-box {
+    width: min(100%, calc((100vh - 240px) * 1.6));
+    margin: 0 auto;
+  }
+  .map-panel {
+    position: absolute; left: 50%; transform: translateX(-50%); bottom: 8px; width: min(calc(100% - 16px), 720px);
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    padding: 8px; border-radius: 10px;
+    background: rgba(255, 255, 255, .94);
+    box-shadow: 0 2px 8px rgba(30, 40, 60, .25);
+  }
+  .map-panel.top { bottom: auto; top: 8px; }
+  .map-panel .options {
+    flex: 1 1 360px; min-width: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: stretch;
+  }
+  .map-panel .option { min-height: 40px; padding: 8px 12px; font-size: .95rem; }
+  .map-fit .map-chips .btn {
+    margin-left: auto; min-height: 32px; padding: 4px 18px; font-size: .9rem;
+  }
+  /* до ответа кнопка невидима, но место занимает — карта не прыгает */
+  .map-fit .map-chips .btn[hidden] { display: inline-flex !important; visibility: hidden; }
 }
