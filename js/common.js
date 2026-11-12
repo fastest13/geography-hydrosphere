@@ -113,7 +113,7 @@
   // Нативное меню «Поделиться» или копирование в буфер.
   function shareResult(btn, text) {
     var url = '';
-    if (location.protocol === 'http:' || location.protocol === 'https:') url = location.origin + location.pathname;
+    if (location.protocol === 'http:' || location.protocol === 'https:') url = location.origin + location.pathname.replace(/index\.html$/, '');
     var full = url ? text + ' ' + url : text;
 
     function flash() {
@@ -130,7 +130,8 @@
 
     if (navigator.share) {
       // Ссылку кладём в сам текст: многие приложения при отдельном url отбрасывают text, и оценка теряется.
-      var data = { title: 'География: гидросфера', text: full };
+      // title не передаём: текст уже начинается с названия, иначе оно повторяется дважды.
+      var data = { text: full };
       try {
         navigator.share(data).catch(function (e) {
           if (e && e.name === 'AbortError') return;
