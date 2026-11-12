@@ -3,7 +3,7 @@
 (function (root) {
   'use strict';
 
-  var METRIKA_ID = 0; // номер счётчика Яндекс Метрики; 0 — выключено
+  var METRIKA_ID = 114222148; // номер счётчика Яндекс Метрики; 0 — выключено
   var CONSENT_KEY = 'cookieConsent';
   var App = root.App = root.App || {};
 
