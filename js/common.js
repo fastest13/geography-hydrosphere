@@ -79,7 +79,7 @@
     var mode = App.modes && App.modes[modeName];
     var title = mode && mode.title;
     return 'География: гидросфера' + (title ? ' — «' + title + '»' : '') +
-      ': оценка ' + grade + ' (' + (label || 'верно').toLowerCase() + ' ' + correct + ' из ' + total + ') \uD83D\uDEE1\uFE0F';
+      ': оценка ' + grade + ' (' + (label || 'верно').toLowerCase() + ' ' + correct + ' из ' + total + ') \uD83C\uDF0D';
   };
 
   function legacyCopy(text) {
@@ -129,8 +129,8 @@
     }
 
     if (navigator.share) {
-      var data = { title: 'География: гидросфера', text: text };
-      if (url) data.url = url;
+      // Ссылку кладём в сам текст: многие приложения при отдельном url отбрасывают text, и оценка теряется.
+      var data = { title: 'География: гидросфера', text: full };
       try {
         navigator.share(data).catch(function (e) {
           if (e && e.name === 'AbortError') return;
