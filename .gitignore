@@ -1,0 +1,17 @@
+.DS_Store
+
+# Оригиналы картинок из ChatGPT — сайт использует уменьшенные копии (knight-*.png, hero.jpg)
+images/Disappointed Knight with a Sigh.png
+images/Friendly Young Knight with Shield.png
+images/Joyful knight’s victory jump.png
+images/Knight's journey across medieval worlds.png
+images/Sad young knight hugging knees.png
+
+# Исходники учебника и заготовки — не публикуем
+*.HEIC
+source-jpg/
+_from-history/
+CLAUDE.md
+
+# Оригиналы картинок из ChatGPT — сайт использует уменьшенные копии (knight-*.png, hero.jpg)
+images/original/

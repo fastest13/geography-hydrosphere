@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>География: гидросфера — тренажёр</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1>География</h1>
+      <p class="subtitle">Тренажёр по учебнику: гидросфера — водная оболочка Земли</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="menu" class="menu">
+      <figure class="hero"><img src="images/hero.jpg" alt="Мальчик-путешественник с глобусом на фоне гор, рек и океана" width="1280" height="853"></figure>
+      <div class="menu-cards">
+        <button type="button" class="menu-card" data-mode="match">
+          <span class="menu-title">Соедини термины с определениями</span>
+          <span class="menu-desc">Все термины сразу: расставь определения напротив нужных понятий.</span>
+        </button>
+        <button type="button" class="menu-card" data-mode="terms">
+          <span class="menu-title">Выбери определение</span>
+          <span class="menu-desc">Дан термин — найди верное определение среди пяти.</span>
+        </button>
+        <a class="memo-pill" href="pamyatka.html">📘 Коротко о главном</a>
+      </div>
+    </section>
+
+    <section id="mode" class="mode" hidden></section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <a href="privacy.html">Политика конфиденциальности</a>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/mode-match.js"></script>
+  <script src="js/mode-term-quiz.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
