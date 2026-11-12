@@ -438,3 +438,49 @@ html.cookie-blocked body { overflow: hidden; }
   body[data-page="pamyatka"] .memo-group h3 { font-size: 9.5pt; margin-bottom: 2px; }
   body[data-page="pamyatka"] .memo-group p { font-size: inherit; margin-bottom: 2px; }
 }
+
+/* ---------- Режим «Найди на карте» ---------- */
+.menu-card-wide { grid-column: 1 / -1; }
+.map-target { color: var(--accent); font-weight: 700; }
+.map-chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0; }
+.map-chip {
+  min-height: 32px; padding: 4px 9px;
+  font: inherit; font-size: .85rem; color: var(--accent);
+  background: #fff; border: 1px solid var(--accent); border-radius: 999px;
+  cursor: pointer; touch-action: manipulation;
+}
+.map-chip.active { background: var(--accent); color: #fff; }
+.map-chip:focus-visible, .map-zoom-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.map-box {
+  width: 100%; aspect-ratio: 1 / 1;
+  border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; background: #cfe3f1; position: relative;
+}
+.map-svg { display: block; width: 100%; height: 100%; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.map-zoom { position: absolute; left: 8px; bottom: 8px; display: flex; flex-direction: column; gap: 6px; }
+.map-zoom-btn {
+  width: 36px; height: 36px; padding: 0; font: inherit; font-size: 1.4rem; line-height: 1; color: var(--accent);
+  background: rgba(255, 255, 255, .92); border: 1px solid var(--border); border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(30, 40, 60, .25); cursor: pointer; touch-action: manipulation;
+}
+.map-zoom-btn:disabled { opacity: .4; cursor: default; }
+.map-banner {
+  position: absolute; left: 8px; right: 8px; top: 8px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  padding: 8px 10px; border-radius: 10px;
+  font-weight: 600; font-size: .95rem; line-height: 1.3;
+  box-shadow: 0 2px 8px rgba(30, 40, 60, .25);
+}
+.map-banner.bottom { top: auto; bottom: 8px; }
+.map-banner[hidden] { display: none; }
+.map-banner.ok { color: var(--green); background: var(--green-bg); border: 1px solid var(--green); }
+.map-banner.bad { color: var(--red); background: var(--red-bg); border: 1px solid var(--red); }
+.map-banner-text { flex: 100 1 150px; min-width: 0; }
+.map-banner .btn { flex: 1 0 auto; min-height: 36px; padding: 6px 14px; font-size: .9rem; }
+@media (min-width: 600px) {
+  .map-box { aspect-ratio: 16 / 10; }
+}
+@media (max-width: 380px) {
+  .map-chips { gap: 4px; }
+  .map-chip { min-height: 30px; padding: 4px 7px; font-size: .8rem; }
+}
