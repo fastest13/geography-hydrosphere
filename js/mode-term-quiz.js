@@ -5,7 +5,7 @@
   App.modes.terms = {
     title: 'Выбери определение',
     start: function (c) {
-      var targets = App.sample(window.TERMS, Math.min(20, window.TERMS.length));
+      var targets = App.sample(window.TERMS, Math.min(15, window.TERMS.length));
       var questions = targets.map(function (t) {
         var options = App.shuffle([t.def].concat(t.wrong)).map(function (text) {
           return { text: text, correct: text === t.def };

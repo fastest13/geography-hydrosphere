@@ -396,6 +396,13 @@ html.cookie-blocked body { overflow: hidden; }
 .memo-defs p { margin: 0 0 4px; font-size: .92rem; }
 .memo-defs p:last-child { margin-bottom: 0; }
 .memo-defs .memo-defs-label { color: var(--accent); font-weight: 700; margin-bottom: 2px; }
+.memo-wide { grid-column: 1 / -1; }
+.memo-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; align-items: start; }
+.memo-group:first-child { grid-row: 1 / span 2; }
+.memo-group h3 { margin: 0 0 5px; font-size: .95rem; color: var(--accent); }
+.memo-group + .memo-group h3 { margin-top: 2px; }
+.memo-group p { margin: 0 0 4px; font-size: .95rem; }
+.memo-group .memo-list { margin-bottom: 0; }
 
 @media (max-width: 640px) {
   .memo { padding: 14px; margin-left: 8px; margin-right: 8px; gap: 12px; }
@@ -403,6 +410,8 @@ html.cookie-blocked body { overflow: hidden; }
   .memo-pic { width: 100px; }
   .memo h1 { font-size: 1.3rem; }
   .memo-grid { grid-template-columns: 1fr; }
+  .memo-cols { grid-template-columns: 1fr; }
+  .memo-group:first-child { grid-row: auto; }
 }
 
 @media print {
@@ -424,4 +433,8 @@ html.cookie-blocked body { overflow: hidden; }
   body[data-page="pamyatka"] .memo-list li { margin-bottom: 2px; font-size: inherit; }
   body[data-page="pamyatka"] .memo-defs { padding: 4px 7px; margin-top: 5px; border-right-width: 3px; border-bottom-width: 3px; }
   body[data-page="pamyatka"] .memo-defs p { font-size: 9pt; margin-bottom: 2px; }
+  body[data-page="pamyatka"] .memo-wide { column-span: all; break-inside: avoid; margin-top: 2px; }
+  body[data-page="pamyatka"] .memo-cols { gap: 2px 14px; }
+  body[data-page="pamyatka"] .memo-group h3 { font-size: 9.5pt; margin-bottom: 2px; }
+  body[data-page="pamyatka"] .memo-group p { font-size: inherit; margin-bottom: 2px; }
 }

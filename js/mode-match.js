@@ -6,7 +6,7 @@
     title: 'Соедини термины с определениями',
     start: function (c) {
       var el = App.el;
-      var N = window.TERMS.length;
+      var N = Math.min(12, window.TERMS.length);
       var terms = App.sample(window.TERMS, N);
       // slots[row] = индекс термина, чьё определение стоит в строке row
       var slots = App.shuffle(terms.map(function (_, i) { return i; }));
