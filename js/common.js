@@ -68,7 +68,7 @@
   };
 
   App.GRADE_INFO = {
-    5: { img: 'images/knight-5.png', phrase: 'Победа! Ты настоящий знаток гидросферы!', alt: 'Мальчик-путешественник в восторге прыгает с глобусом над головой' },
+    5: { img: 'images/boy-victory.png', video: 'images/boy-victory.webm', phrase: 'Победа! Ты настоящий знаток гидросферы!', alt: 'Мальчик-путешественник празднует победу' },
     4: { img: 'images/knight-4.png', phrase: 'Хорошо! Ещё немного — и будет пятёрка.', alt: 'Спокойный мальчик-путешественник с картой и компасом' },
     3: { img: 'images/knight-3.png', phrase: 'Можно лучше… Повтори и попробуй снова.', alt: 'Мальчик-путешественник вздыхает, глядя на смятую карту' },
     2: { img: 'images/knight-2.png', phrase: 'Не сдавайся! Попробуй ещё раз.', alt: 'Грустный мальчик-путешественник сидит рядом со сломанным компасом' }
@@ -156,8 +156,22 @@
       shareResult(shareBtn, text);
     });
     if (App.track) App.track('result', { mode: App.currentMode, grade: grade });
+    var picture = App.el('img', { class: 'result-knight', src: info.img, alt: info.alt });
+    var mascot = picture;
+    if (info.video && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      mascot = App.el('video', {
+        class: 'result-knight', src: info.video, poster: info.img,
+        autoplay: true, loop: true, muted: true, playsinline: true,
+        width: 480, height: 480, role: 'img', 'aria-label': info.alt
+      });
+      mascot.muted = true;
+      mascot.defaultMuted = true;
+      mascot.addEventListener('error', function () {
+        if (mascot.parentNode) mascot.parentNode.replaceChild(picture, mascot);
+      });
+    }
     var box = App.el('div', { class: 'result ' + cls + ' grade-' + grade }, [
-      App.el('img', { class: 'result-knight', src: info.img, alt: info.alt }),
+      mascot,
       App.el('div', { class: 'result-body' }, [
         App.el('div', { class: 'result-top' }, [
           App.el('div', { class: 'result-grade', text: 'Оценка: ' + grade }),
@@ -168,6 +182,12 @@
       ])
     ]);
     container.appendChild(box);
+    if (mascot.tagName === 'VIDEO') {
+      var playback = mascot.play();
+      if (playback && playback.catch) playback.catch(function () {
+        if (mascot.parentNode) mascot.parentNode.replaceChild(picture, mascot);
+      });
+    }
     return box;
   };
 
